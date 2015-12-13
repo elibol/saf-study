@@ -1,5 +1,8 @@
+# Enter Base Project directory here
+BASE_DIR <- "/Users/saz/GDrive/Harvard/E-139_Stats/project/saf-study/"
+
 force_by_race <- function(year){
-  fn = paste("force_data/", year, ".force.csv", sep="")
+  fn = paste(BASE_DIR, "force_data/", year, ".force.csv", sep="")
   data <- read.csv(file=fn, head=TRUE,sep=",")
   
   # model <- lm(pf~race + sex + age + weight + haircolr + eyecolor, data=data)
