@@ -3,7 +3,8 @@ force_by_race <- function(year){
   data <- read.csv(file=fn, head=TRUE,sep=",")
   
   # model <- lm(pf~race + sex + age + weight + haircolr + eyecolor, data=data)
-  model <- lm(FORCE_USED~race, data=data)
+  # model <- lm(FORCE_USED~race, data=data)
+  model <- glm(FORCE_USED~race, data=data, family = "binomial")
   # summary(model)
   
   names = make.names(c("A Asian/Pacific Islander",
@@ -54,10 +55,10 @@ layout(matrix(c(1)))
 
 # colors = rainbow(length(names), s = 1, v = 1, start = 0, end = max(1, n - 1)/n, alpha = 1)
 colors = rainbow(length(names))
-plot(years, A[,1], type="l", col=colors[[1]], ylab="Force Used")
+plot(years, A[,1], type="l", col=colors[[1]], ylab="Force Used", lwd=2.5, ylim = c(0.13, 0.38))
 for(i in 2:length(names)){
   print(names[[i]])
-  lines(years, A[, i], col=colors[[i]])
+  lines(years, A[, i], col=colors[[i]], lwd=2.5)
 }
 
 plot.new()
@@ -65,7 +66,7 @@ legend("center", "groups", # places a legend at the appropriate place
        names, # puts text in the legend
        lty=rep(1, length(names)), # gives the legend appropriate symbols (lines)
        lwd=rep(2.5, length(names)), 
-       y.intersp=0.8,
+       # y.intersp=0.8,
        col=colors) # gives the legend lines the correct color and width
 
 # xdf = data.frame(x)
