@@ -1,6 +1,8 @@
 # install.packages("aod")
 library(aod)
 
+# setwd("~/Desktop/STAT139/FINAL/repo/saf-study")
+
 year = 2014
 fn = paste("data/", year, ".csv", sep="")
 data <- read.csv(file=fn, head=TRUE,sep=",")
@@ -42,7 +44,7 @@ x.all <- as.factor(data$race == "B")
 length(x.all[x.all==TRUE])/length(x.all)
 binom.test(c(length(x.all[x.all==TRUE]), length(x.all[x.all==FALSE])), 
            p = 1.0/length(races),
-           alternative = "greater")
+           alternative = "two.sided")
 
 # Probability of stop and frisk on WHITE
 x.all <- as.factor(data$race == "W")
@@ -53,14 +55,35 @@ binom.test(c(length(x.all[x.all==TRUE]), length(x.all[x.all==FALSE])),
 
 # Probability of force on BLACK
 x.pf <- as.factor((data[data$pf,])$race == "B")
-length(x.pf)/length(data$pf)
+# length(x.pf)/length(data$pf)
 binom.test(c(length(x.pf[x.pf==TRUE]), length(x.pf[x.pf==FALSE])), 
-           p = 1.0/length(races),
+           p = length(data$pf[data$race == "B"])/length(data$pf),
            alternative = "greater")
+
 
 # Probability of force on WHITE
 x.pf <- as.factor((data[data$pf,])$race == "W")
-length(x.pf)/length(data$pf)
+# length(x.pf)/length(data$pf)
 binom.test(c(length(x.pf[x.pf==TRUE]), length(x.pf[x.pf==FALSE])), 
-           p = 1.0/length(races),
+           p = length(data$pf[data$race == "W"])/length(data$pf),
            alternative = "greater")
+
+
+# Probability of force on HISPANIC BLACK
+x.pf <- as.factor((data[data$pf,])$race == "P")
+# length(x.pf)/length(data$pf)
+binom.test(c(length(x.pf[x.pf==TRUE]), length(x.pf[x.pf==FALSE])), 
+           p = length(data$pf[data$race == "P"])/length(data$pf),
+           alternative = "greater",
+           conf.level = 1-0.05/length(races))
+
+
+# stuff <- data[data$race=="P",]
+# stuff2 <- stuff[stuff$pf == TRUE,]
+# length(stuff2$pf) / length(stuff$pf)
+
+
+# test1 = data[data$race == "W",]
+# test2 = test1[test1$pf == TRUE,]
+# length(test2$pf) / length(data[data$race == "W",]$pf)
+
