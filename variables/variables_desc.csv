@@ -1,0 +1,20 @@
+Variable,Position,Label,Measurement,Level,Column Width,Alignment,Print Format,Write Format
+inout,7,WAS STOP INSIDE OR OUTSIDE ?,Nominal,5,Left,A1,A1
+othpers,14,WERE OTHER PERSONS STOPPED, QUESTIONED OR FRISKED ?,Nominal,7,Left,A1,A1
+frisked,23,WAS SUSPECT FRISKED ?,Nominal,7,Left,A1,A1
+searched,24,WAS SUSPECT SEARCHED ?,Nominal,8,Left,A1,A1
+contrabn,25,WAS CONTRABAND FOUND ON SUSPECT ?,Nominal,8,Left,A1,A1
+pistol,27,WAS A PISTOL FOUND ON SUSPECT ?,Nominal,6,Left,A1,A1
+riflshot,28,WAS A RIFLE FOUND ON SUSPECT ?,Nominal,8,Left,A1,A1
+asltweap,29,WAS AN ASSAULT WEAPON FOUND ON SUSPECT ?,Nominal,8,Left,A1,A1
+knifcuti,30,WAS A KNIFE OR CUTTING INSTRUMENT FOUND ON SUSPECT ?,Nominal,8,Left,A1,A1
+machgun,31,WAS A MACHINE GUN FOUND ON SUSPECT ?,Nominal,7,Left,A1,A1
+othrweap,32,WAS ANOTHER TYPE OF WEAPON FOUND ON SUSPECT,Nominal,8,Left,A1,A1
+sex,81,SUSPECT'S SEX,Nominal,3,Left,A1,A1
+race,82,SUSPECT'S RACE,Nominal,4,Left,A1,A1
+age,84,SUSPECT'S AGE,Nominal,6,Right,F6,F6
+weight,87,SUSPECT'S WEIGHT,Nominal,6,Right,F6,F6
+haircolr,88,SUSPECT'S HAIRCOLOR,Scale,8,Left,A2,A2
+eyecolor,89,SUSPECT'S EYE COLOR,Nominal,8,Left,A2,A2
+build,90,SUSPECT'S BUILD,Nominal,5,Left,A2,A2
+othfeatr,91,"SUSPECT'S OTHER FEATURES (SCARS, TATOOS ETC.)",Nominal,20,Left,A20,A20
