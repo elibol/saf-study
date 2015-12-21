@@ -35,18 +35,24 @@ table <- fulltable[race!='U']
 fit.force<-glm(FORCE_USED~race, data=table, family=binomial())
 summary(fit.force)
 getProbs(fit.force)
-conf<-confint.lm(fit.force, level=(1-0.05^8) )
+conf<-confint.lm(fit.force, level=(1-0.05/8) )
 intercept<-conf[1,1:2]
 conf[2:7,1] <- conf[2:7,1] + intercept[1]
 conf[2:7,2] <- conf[2:7,2] + intercept[2]
 conf.probs<- exp(conf) / (exp(conf) + 1) * 100
 conf.probs
+
 ## Arrests Made
-table <- fulltable[race=='W'|race=='B']
+table <- fulltable[race!='U']
 fit.arst <- glm(arstmade~race, family=binomial(), data=table)
 summary(fit.arst)
 getProbs(fit.arst)
-
+conf<-confint.lm(fit.arst, level=(1-0.05/8) )
+intercept<-conf[1,1:2]
+conf[2:7,1] <- conf[2:7,1] + intercept[1]
+conf[2:7,2] <- conf[2:7,2] + intercept[2]
+conf.probs<- exp(conf) / (exp(conf) + 1) * 100
+conf.probs
 
 
 fit.weapon<-glm(HAD_WEAPON~race, data=data, family=binomial())
