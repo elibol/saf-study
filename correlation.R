@@ -5,7 +5,7 @@ library(ggplot2)
 library(reshape2)
 library(Hmisc)
 
-data.variables <- read.csv(file="data/variables_desc.csv", head=TRUE, sep=",")
+data.variables <- read.csv(file="variables/variables_desc.csv", head=TRUE, sep=",")
 data.variables = data.variables[c("Variable", "Label")]
 
 year = 2014

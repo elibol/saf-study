@@ -1,10 +1,11 @@
+# setwd("~/GDrive/Harvard/E-139_Stats/project/stats_project/source files")
+
 # SET TO FALSE TO PROCESS ALL THE DATA
 TEST_MODE <- FALSE;
 
 # Start Clock for time reporting
 start_time <- proc.time()
 data <- NULL
-source_folder <- "/Users/saz/GDrive/Harvard/E-139_Stats/project/stats_project/source files/"
 
 ## FUNCTIONS ##
 add_derived_fields <- function (data) {
@@ -36,14 +37,14 @@ add_derived_fields <- function (data) {
 }
 
 run <- function(i) {
-  f.in<-paste0(source_folder, i, ".csv")
+  f.in<-paste0(i, ".csv")
   data <- read.csv(f.in)
   
   data <- add_derived_fields(data)
-  data <- subset(data,select=c("year", "race", "FORCE_USED", "HAD_WEAPON"))
+  data <- subset(data,select=c("year", "race", "arstmade", "FORCE_USED", "HAD_WEAPON"))
   
   # Write
-  dest_folder <- paste0(source_folder, 'dest/')
+  dest_folder <- paste0('dest/')
   if (!dir.exists(dest_folder)) {
     dir.create(dest_folder)
   }
@@ -55,13 +56,13 @@ run <- function(i) {
 
 if (TEST_MODE) {
   ## OPTION B. For testing
-  i <- 2004
+  i <- 2008
   print(paste("Processing",i,"..."))
   run(i)
   print("...Processed.")
 } else {
   ## Load All Data
-  for (i in 2003:2014) {
+  for (i in 2003:2007) {
     #paste0 concatenates strings without space, paste adds space
     print(paste("Processing",i,"..."))
     run(i)
