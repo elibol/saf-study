@@ -54,24 +54,26 @@ conf[2:7,2] <- conf[2:7,2] + intercept[2]
 conf.probs<- exp(conf) / (exp(conf) + 1) * 100
 conf.probs
 
-
-fit.weapon<-glm(HAD_WEAPON~race, data=data, family=binomial())
+# Weapon vs Race
+fit.weapon<-glm(HAD_WEAPON~race, data=table, family=binomial())
 summary(fit.weapon)
 getProbs(fit.weapon)
+conf<-confint.lm(fit.weapon, level=(1-0.05/8) )
+intercept<-conf[1,1:2]
+conf[2:7,1] <- conf[2:7,1] + intercept[1]
+conf[2:7,2] <- conf[2:7,2] + intercept[2]
+conf.probs<- exp(conf) / (exp(conf) + 1) * 100
+conf.probs
 
-fit.forcetoweapon<-glm(FORCE_USED~race*HAD_WEAPON, data=data, family=binomial())
+fit.forcetoRaceweapon<-glm(FORCE_USED~race*HAD_WEAPON, data=table, family=binomial())
+getProbs(fit.forcetoRaceweapon)
+
+
+# Force to weapon
+fit.forcetoweapon<-glm(FORCE_USED~HAD_WEAPON, data=table, family=binomial())
+summary(fit.forcetoweapon)
 getProbs(fit.forcetoweapon)
-
-
-data2<-read.csv(f.in)
-data2$white<-data$race=="W" | data$race=="Q"
-data2$black<-data$race=="B" | data$race=="P"
-
-
-fit.color <- glm(FORCE_USED~(white+black)*HAD_WEAPON, data=data2, family=binomial())
-summary(fit.color)
-# Find probability
-odds<-coefficients(fit.color)
-probs <- exp(odds) / (exp(odds) + 1)
-print(probs)
-
+conf<-confint.lm(fit.forcetoweapon)
+conf[2,] = conf[2,] + conf[1,] # add intercept
+conf.probs<- exp(conf) / (exp(conf) + 1) * 100
+conf.probs
